@@ -4,7 +4,7 @@ export const ItemListContainer = () => {
 
    return (
       <div>
-         <h2 className=" border border-red-700 w-fit"> {greeting} </h2>
+         <h2 className=" w-fit text-2xl font-sansSerif text-gray-600"> {greeting} </h2>
       </div>
    )
 }
