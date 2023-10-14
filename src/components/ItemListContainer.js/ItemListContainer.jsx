@@ -1,7 +1,6 @@
 
 
-export const ItemListContainer = () => {
-   const greeting = 'Hi and Welcome!'
+export const ItemListContainer = ( {greeting} ) => {
 
    return (
       <div className=" flex flex-col gap-3">

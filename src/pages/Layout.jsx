@@ -10,7 +10,7 @@ export const Layout = () => {
             <Navbar />
          </header>
          <main className=' flex flex-col gap-4 bg-gradient-to-t from-slate-300 to-slate-200 grow justify-center items-center'>
-            <ItemListContainer />
+            <ItemListContainer greeting="Hi and Welcome!"/>
          </main>
          <footer className=' bg-lime-200 h-[15vh] '>Soy el footer</footer>
       </div>
