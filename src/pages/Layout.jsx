@@ -12,7 +12,7 @@ export const Layout = () => {
          <main className=' flex flex-col gap-4 bg-gradient-to-t from-slate-300 to-slate-200 grow justify-center items-center'>
             <ItemListContainer greeting="Hi and Welcome!"/>
          </main>
-         <footer className=' bg-lime-200 h-[15vh] '>Soy el footer</footer>
+         <footer className=' bg-lime-200 h-[15vh] '>Footer</footer>
       </div>
    )
 }
