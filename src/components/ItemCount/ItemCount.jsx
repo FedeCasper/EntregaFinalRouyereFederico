@@ -10,9 +10,9 @@ export const ItemCount = ({numberOfItems, fnAddQuantity, fnSubtractQuantity, num
                <h3>Camisa Tiger</h3>
                <h5>Available stock: {numberOfStock}</h5>
                <div className=' flex justify-between w-full'>
-                  <AddCircleIcon onClick={fnAddQuantity} />
+                  <RemoveCircleIcon onClick={fnSubtractQuantity} className=' cursor-pointer  hover:text-lime-600' />
                   {numberOfItems}
-                  <RemoveCircleIcon onClick={fnSubtractQuantity} />
+                  <AddCircleIcon onClick={fnAddQuantity} className=' cursor-pointer hover:text-lime-600'/>
                </div>
             </div>
             <button className="w-full transition-all ease-in-out bg-pink-100 rounded p-2 drop-shadow-md hover:bg-lime-300">Agregar al carrito</button>
