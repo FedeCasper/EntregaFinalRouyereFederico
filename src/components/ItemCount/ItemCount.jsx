@@ -6,7 +6,7 @@ export const ItemCount = () => {
 
    const [quantity, setQuantity] = useState(0)
    // const [stock, setStock] = useState(10)
-   let refStock = useRef(10)
+   const refStock = useRef(10)
 
    function addQuantity(){
       if( quantity < (refStock.current + quantity) ){
