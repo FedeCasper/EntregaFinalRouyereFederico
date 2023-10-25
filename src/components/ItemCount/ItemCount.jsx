@@ -27,9 +27,8 @@ const ItemCount = () => {
    }
 
    return (
-      <div className='flex flex-col items-center gap-2'>
+      <div className='flex flex-col items-center gap-2 mt-4'>
             <div className='w-full flex flex-col justify-between items-center gap-4 bg-slate-200 p-2 rounded-md'>
-               <h3>Camisa Tiger</h3>
                <h5>Available stock: {refStock.current}</h5>
                <div className=' flex justify-between w-full'>
                   <RemoveCircleIcon onClick={subtractQuantity} className=' cursor-pointer hover:text-lime-600' />

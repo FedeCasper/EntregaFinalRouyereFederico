@@ -1,7 +1,7 @@
 import Item from '../Item/Item.jsx'
 import { useEffect, useState } from "react" 
-import SyncLoader from "react-spinners/SyncLoader";
-{/* <SyncLoader color="purple" /> */}
+import PulseLoader from "react-spinners/PulseLoader";
+
 
 const PRODUCTS = [
    {
@@ -41,12 +41,14 @@ const ItemList = (props) => {
    console.log(props);
 
    const [productList, setProductList] = useState([])
+   const [loader, setLoader] = useState(true)
 
    console.log(productList);
 
    useEffect( () => {
       new Promise( (resolve, reject) => {
          setTimeout( () => {
+            setLoader(false)
             resolve(PRODUCTS)
          }, 3000)
       })
@@ -55,17 +57,20 @@ const ItemList = (props) => {
    }, [])
 
    return (
-   <section className=" flex gap-4">
-      { productList.map( (product, index) => 
-         <Item 
-            key={`${index}`} 
-            product={product.product} 
-            color={product.color} 
-            brand={product.brand} 
-            image={product.image} 
-            component={props.children} 
-         /> 
-      ) }
+   <section className=" flex justify-center gap-4">
+      { loader ? 
+         <PulseLoader color="gray" /> :
+         productList.map( (product, index) => 
+            <Item 
+               key={`${index}`} 
+               product={product.product} 
+               color={product.color} 
+               brand={product.brand} 
+               image={product.image} 
+               component={props.children} 
+            /> 
+         ) 
+      }
    </section>
    )
 }
