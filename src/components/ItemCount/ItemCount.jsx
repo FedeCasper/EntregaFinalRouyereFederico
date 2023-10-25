@@ -2,7 +2,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { useRef, useState } from "react"
 
-export const ItemCount = () => {
+const ItemCount = () => {
 
    const [quantity, setQuantity] = useState(0)
    // const [stock, setStock] = useState(10)
@@ -41,3 +41,5 @@ export const ItemCount = () => {
       </div>
    )
 }
+
+export default ItemCount;

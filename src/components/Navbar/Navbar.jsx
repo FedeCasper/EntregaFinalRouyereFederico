@@ -1,6 +1,6 @@
-import { CartWidget } from "../CartWidget/CartWidget"
+import CartWidget from "../CartWidget/CartWidget.jsx"
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
     <nav className='flex justify-around bg-lime-200 w-full py-2 text-gray-600'>
       <img src="./images/store.png" alt="cart icon" /> 
@@ -14,3 +14,5 @@ export const Navbar = () => {
     </nav>
   )
 }
+
+export default Navbar;

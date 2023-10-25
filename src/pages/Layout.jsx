@@ -1,6 +1,6 @@
 import React from 'react'
-import { Navbar } from '../components/Navbar/Navbar'
-import { ItemListContainer } from '../components/ItemListContainer.js/ItemListContainer'
+import Navbar from '../components/Navbar/Navbar.jsx'
+import ItemListContainer from '../components/ItemListContainer/ItemListContainer.jsx'
 
 export const Layout = () => {
    return (

@@ -1,5 +1,5 @@
 
-export const CartWidget = () => {
+const CartWidget = () => {
 
    return (
       <div className="flex items-center w-fit relative cursor-pointer group">
@@ -10,3 +10,5 @@ export const CartWidget = () => {
       </div>
    )
 }
+
+export default CartWidget
