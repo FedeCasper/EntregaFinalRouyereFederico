@@ -42,6 +42,9 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 const ItemList = (props) => {
 
+   const [productList, setProductList] = useState([])
+   const [loader, setLoader] = useState(true)
+
    const fetchProducts = () => {
       fetch("https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products", {
          method: "GET",
@@ -58,8 +61,17 @@ const ItemList = (props) => {
       .catch( (err) => console.log(err) )
    }
 
-   const [productList, setProductList] = useState([])
-   const [loader, setLoader] = useState(true)
+   const getProduct = (id) => {
+      console.log(id);
+      fetch('https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products/' + id, {
+         method: "GET"
+      })
+      .then( (res) => res.json() )
+      .then((data) => {
+         console.log(data);
+      })
+      .catch( (err) => console.log(err) )
+   }
 
    useEffect( () => {
       fetchProducts()
@@ -80,15 +92,16 @@ const ItemList = (props) => {
    <section className=" flex justify-center flex-wrap gap-4">
       { loader ? 
          <PulseLoader color="gray" /> :
-         productList.map( (product, index) => 
+         productList.map( ({id, name, description, price, image}) => 
+         <div className="flex flex-col justify-between bg-slate-300 rounded-md h-min-48 w-48 p-2 cursor-pointer shadow-md" key={id} onClick={ () => { getProduct(id) } }>
             <Item 
-               key={`${index}`} 
-               name={product.name} 
-               description={product.description}
-               price={product.price} 
-               image={product.image + "?id=" +product.id} 
-               component={props.children} 
+               name={name} 
+               description={description}
+               price={price} 
+               image={image + "?id=" +id} 
+               component={props.children}
             /> 
+         </div>
          ) 
       }
    </section>
