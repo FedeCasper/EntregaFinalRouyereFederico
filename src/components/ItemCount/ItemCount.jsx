@@ -36,7 +36,7 @@ const ItemCount = () => {
                   <AddCircleIcon onClick={addQuantity} className=' cursor-pointer hover:text-lime-600'/>
                </div>
             </div>
-            <button className="w-full transition-all ease-in-out bg-pink-100 rounded p-2 drop-shadow-md hover:bg-lime-300">Agregar al carrito</button>
+            <button className="w-full transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-md hover:bg-lime-300">Agregar al carrito</button>
       </div>
    )
 }
