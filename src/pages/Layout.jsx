@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from '../components/Navbar/Navbar.jsx'
-import ItemListContainer from '../components/ItemListContainer/ItemListContainer.jsx'
+import ItemListContainer from './ItemListContainer/ItemListContainer.jsx'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 export const Layout = () => {
    return (
@@ -9,9 +10,11 @@ export const Layout = () => {
             <h1 className=' flex items-center font-serif pt-8 font-bold text-2xl text-gray-600'>Casper's Store</h1>
             <Navbar />
          </header>
-         <main className=' flex flex-col gap-4 bg-gradient-to-t from-slate-300 to-slate-200 grow justify-center items-center'>
-            <ItemListContainer greeting="Hi and Welcome!"/>
-         </main>
+         <BrowserRouter className=' flex flex-col gap-4 bg-gradient-to-t from-slate-300 to-slate-200 grow justify-center items-center'>
+            <Routes>
+               <Route path="/" element={<ItemListContainer greeting="Hi and Welcome!" />} />
+            </Routes>
+         </BrowserRouter>
          <footer className=' bg-lime-200 h-[15vh] '>Footer</footer>
       </div>
    )

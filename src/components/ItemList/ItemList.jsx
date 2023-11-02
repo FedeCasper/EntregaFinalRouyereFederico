@@ -45,7 +45,7 @@ const ItemList = (props) => {
    const [productList, setProductList] = useState([])
    const [loader, setLoader] = useState(true)
 
-   const fetchProducts = () => {
+   const getAllProducts = () => {
       fetch("https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products", {
          method: "GET",
          headers: {
@@ -63,7 +63,7 @@ const ItemList = (props) => {
 
    const getProduct = (id) => {
       console.log(id);
-      fetch('https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products/' + id, {
+      fetch(`https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products/${id}`, {
          method: "GET"
       })
       .then( (res) => res.json() )
@@ -74,7 +74,7 @@ const ItemList = (props) => {
    }
 
    useEffect( () => {
-      fetchProducts()
+      getAllProducts()
    }, [])
 
    // useEffect( () => {

@@ -1,5 +1,5 @@
-import ItemCount from "../ItemCount/ItemCount.jsx"
-import ItemList from "../ItemList/ItemList.jsx"
+import ItemCount from "../../components/ItemCount/ItemCount.jsx"
+import ItemList from "../../components/ItemList/ItemList.jsx"
 
 const ItemListContainer = ( { greeting } ) => {
 
