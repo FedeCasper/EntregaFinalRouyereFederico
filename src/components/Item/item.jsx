@@ -1,4 +1,4 @@
-const Item = ({name, description, price, image, component}) => {
+const Item = ({name, description, price, image, category, component}) => {
 
    return (
       <>
@@ -6,6 +6,7 @@ const Item = ({name, description, price, image, component}) => {
          <h2 className=" font-bold first-letter:uppercase mb-2">{name}</h2>
          <p className="font-medium first-letter:uppercase">{price}</p>
          <p className=" italic text-sm mb-2">{description}</p>
+         <p className=" italic text-sm mb-2">{category}</p>
          {component}
       </>
    )

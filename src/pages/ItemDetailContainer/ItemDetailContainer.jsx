@@ -8,7 +8,7 @@ const ItemDetailContainer = () => {
 
    const { id } = useParams();
    console.log(id);
-   const [productSelected, setProductSelected] = useState(null);
+   const [productSelected, setProductSelected] = useState(id);
 
    const getProduct = (id) => {
       console.log(id);
@@ -27,9 +27,9 @@ const ItemDetailContainer = () => {
    }, [])
 
    return (
-      <div>
-         {/* { id && <ItemDetail productSelected={ productSelected }/> } */}
-      </div>
+      <section className=' flex flex-col gap-4 bg-gradient-to-t from-slate-300 to-slate-200 grow justify-center items-center'>
+         { id && <ItemDetail productSelected={ productSelected }/> }
+      </section>
 
    )
 }

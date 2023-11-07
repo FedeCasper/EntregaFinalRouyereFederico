@@ -1,7 +1,7 @@
 import Item from '../Item/Item.jsx'
 import { useEffect, useState } from "react" 
 import PulseLoader from "react-spinners/PulseLoader";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 // const PRODUCTS = [
 //    {
@@ -44,8 +44,11 @@ import { Link } from 'react-router-dom';
 const ItemList = (props) => {
 
    const [productList, setProductList] = useState([]);
+   const [filteredList, setFilteredList] = useState([]);
    const [loader, setLoader] = useState(true);
-   const [productSelectedId, setProductSelectedId] = useState(null);
+   const { categoryParam } = useParams(); 
+
+   console.log(categoryParam);
 
    const getAllProducts = () => {
       fetch("https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products", {
@@ -67,22 +70,20 @@ const ItemList = (props) => {
       getAllProducts()
    }, [])
 
-   // useEffect( () => {
-   //    new Promise( (resolve, reject) => {
-   //       setTimeout( () => {
-   //          setLoader(false)
-   //          resolve(PRODUCTS)
-   //       }, 2000)
-   //    })
-   //    .then( (res) => setProductList(res) )
-   //    .catch( (err) => console.log(err) )
-   // }, [])
+   useEffect( () => {
+      if(filteredList.length){
+         setFilteredList( productList.filter( product => product.category === categoryParam ) )
+         console.log(filteredList);
+      }else{
+         setFilteredList(productList)
+      }
+   }, [categoryParam])
 
    return (
    <section className=" flex justify-center flex-wrap gap-4">
       { loader ? 
          <PulseLoader color="gray" /> :
-         productList.map( ({id, name, description, price, image}) => 
+         filteredList.map( ({id, name, description, price, image, category}) => 
          <Link 
             key={id} 
             to={`/item/${id}`}
@@ -92,6 +93,7 @@ const ItemList = (props) => {
                description={description}
                price={price} 
                image={image + "?id=" +id} 
+               category={category}
                component={props.children}
             /> 
          </Link>
