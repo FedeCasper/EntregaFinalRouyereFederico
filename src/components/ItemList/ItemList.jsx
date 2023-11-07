@@ -1,6 +1,7 @@
 import Item from '../Item/Item.jsx'
 import { useEffect, useState } from "react" 
 import PulseLoader from "react-spinners/PulseLoader";
+import { Link } from 'react-router-dom';
 
 // const PRODUCTS = [
 //    {
@@ -42,8 +43,9 @@ import PulseLoader from "react-spinners/PulseLoader";
 
 const ItemList = (props) => {
 
-   const [productList, setProductList] = useState([])
-   const [loader, setLoader] = useState(true)
+   const [productList, setProductList] = useState([]);
+   const [loader, setLoader] = useState(true);
+   const [productSelectedId, setProductSelectedId] = useState(null);
 
    const getAllProducts = () => {
       fetch("https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products", {
@@ -57,18 +59,6 @@ const ItemList = (props) => {
          console.log(data);
          setProductList(data)
          setLoader(false)
-      })
-      .catch( (err) => console.log(err) )
-   }
-
-   const getProduct = (id) => {
-      console.log(id);
-      fetch(`https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products/${id}`, {
-         method: "GET"
-      })
-      .then( (res) => res.json() )
-      .then((data) => {
-         console.log(data);
       })
       .catch( (err) => console.log(err) )
    }
@@ -93,7 +83,10 @@ const ItemList = (props) => {
       { loader ? 
          <PulseLoader color="gray" /> :
          productList.map( ({id, name, description, price, image}) => 
-         <div className="flex flex-col justify-between bg-slate-300 rounded-md h-min-48 w-48 p-2 cursor-pointer shadow-md" key={id} onClick={ () => { getProduct(id) } }>
+         <Link 
+            key={id} 
+            to={`/item/${id}`}
+            className="flex flex-col justify-between bg-slate-300 rounded-md h-min-48 w-48 p-2 cursor-pointer shadow-md">
             <Item 
                name={name} 
                description={description}
@@ -101,7 +94,7 @@ const ItemList = (props) => {
                image={image + "?id=" +id} 
                component={props.children}
             /> 
-         </div>
+         </Link>
          ) 
       }
    </section>
