@@ -14,7 +14,7 @@ export const Layout = () => {
             </header>
                <Routes>
                   <Route path="/" element={ <ItemListContainer greeting="These are our products"/> } />
-                  <Route path="/category/:categoryParam" element={ <ItemListContainer /> } />
+                  <Route path="/category/:categoryParam" element={ <ItemListContainer greeting="Filtered Products"/> } />
                   <Route path="/item/:id" element={ <ItemDetailContainer /> } />
                </Routes>
             <footer className=' bg-lime-200 h-[15vh] '>Footer</footer>

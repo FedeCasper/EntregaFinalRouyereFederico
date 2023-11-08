@@ -41,14 +41,12 @@ import { Link, useParams } from 'react-router-dom';
 //    },
 // ]
 
-const ItemList = (props) => {
+const ItemList = () => {
 
    const [productList, setProductList] = useState([]);
    const [filteredList, setFilteredList] = useState([]);
    const [loader, setLoader] = useState(true);
    const { categoryParam } = useParams(); 
-
-   console.log(categoryParam);
 
    const getAllProducts = () => {
       fetch("https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products", {
@@ -59,8 +57,9 @@ const ItemList = (props) => {
       })
       .then( (res) => res.json() )
       .then((data) => {
-         console.log(data);
+         console.log("Data", data);
          setProductList(data)
+         setFilteredList(data)
          setLoader(false)
       })
       .catch( (err) => console.log(err) )
@@ -71,12 +70,9 @@ const ItemList = (props) => {
    }, [])
 
    useEffect( () => {
-      if(filteredList.length){
-         setFilteredList( productList.filter( product => product.category === categoryParam ) )
-         console.log(filteredList);
-      }else{
-         setFilteredList(productList)
-      }
+         const filteredProducts = productList.filter( product => product.category === categoryParam )
+         filteredProducts.length ? setFilteredList( filteredProducts ) : setFilteredList(productList)
+         console.log("Filtrados", filteredList);
    }, [categoryParam])
 
    return (
@@ -87,14 +83,13 @@ const ItemList = (props) => {
          <Link 
             key={id} 
             to={`/item/${id}`}
-            className="flex flex-col justify-between bg-slate-300 rounded-md h-min-48 w-48 p-2 cursor-pointer shadow-md">
+            className="flex flex-col justify-between bg-slate-300 rounded-md h-min-48 w-48 p-2 cursor-pointer shadow-md transition hover:bg-lime-100 hover:scale-95">
             <Item 
                name={name} 
                description={description}
                price={price} 
                image={image + "?id=" +id} 
                category={category}
-               component={props.children}
             /> 
          </Link>
          ) 
