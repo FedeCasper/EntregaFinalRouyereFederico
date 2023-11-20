@@ -10,13 +10,9 @@ const CartProvider = ( {children} ) => {
 
   const addItem = ( product, quantity ) => {
     console.log(quantity);
-    setProducts( [
-      ...products,
-      { 
-        ...product,
-        quantity, 
-      },
-    ] );
+    setProducts(
+      [ ...products, { ...product, quantity, }, ]
+    );
   };
 
   useEffect( () => {
