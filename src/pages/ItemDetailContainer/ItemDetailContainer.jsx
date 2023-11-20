@@ -27,7 +27,7 @@ const ItemDetailContainer = () => {
       <section className=' flex flex-col gap-4 bg-gradient-to-t from-slate-300 to-slate-200 grow justify-center items-center'>
          { id && 
          <ItemDetail productSelected={ productSelected }>
-            <ItemCount/>
+            <ItemCount productSelected={ productSelected }/>
          </ItemDetail> }
       </section>
 

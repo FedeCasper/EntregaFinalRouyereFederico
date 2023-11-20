@@ -1,10 +1,19 @@
 import CartWidget from "../CartWidget/CartWidget.jsx"
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext.jsx";
+import ToogleThemeWidget from "../ToogleThemeWidget/ToogleThemeWidget.jsx";
 
 const Navbar = () => {
 
   const [productList, setProductList] = useState([]);
+
+  const { theme, setTheme } = useContext(ThemeContext);
+
+const handleToogle = () => {
+  setTheme(theme === "bg-slate-100" ? "bg-slate-700" : "bg-slate-100")
+}
 
   const getAllProducts = () => {
     fetch("https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products")
@@ -34,6 +43,7 @@ const Navbar = () => {
           </Link> 
         )}
       </section>
+      <ToogleThemeWidget themeChange={ handleToogle } />
       <CartWidget />
     </nav>
   )
