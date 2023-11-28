@@ -8,10 +8,10 @@ const ItemCount = ( { productSelected } ) => {
 
    const [quantity, setQuantity] = useState(0);
    const refStock = useRef(10);
-   console.log("refStock", refStock);
+   // console.log("refStock", refStock);
    const { addItem, productQuantity } = useContext(CartContext);
 
-   console.log("ProdQuantity", productQuantity);
+   // console.log("ProdQuantity", productQuantity);
 
    function addQuantity(){
       if( quantity < (refStock.current + quantity) - productQuantity ){
@@ -32,7 +32,6 @@ const ItemCount = ( { productSelected } ) => {
    }
 
    function addToCart(){
-
       console.log("quantity", quantity);
       if( (quantity < refStock.current) || (quantity >= quantity + productQuantity ) ){
          addItem( productSelected, quantity )
@@ -41,8 +40,8 @@ const ItemCount = ( { productSelected } ) => {
       }else{
          alert("No hay stock disponible1")
       }
-
    }
+
    return (
       <div className='flex flex-col items-center gap-2 mt-4'>
             <div className='w-full flex flex-col justify-between items-center gap-4 bg-slate-200 p-2 rounded-md'>

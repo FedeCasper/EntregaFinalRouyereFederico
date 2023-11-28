@@ -6,7 +6,6 @@ import { ThemeContext } from "../../context/ThemeContext.jsx"
 const ItemListContainer = ( { greeting } ) => {
 
    const colorTheme = useContext(ThemeContext)
-   console.log(colorTheme);
 
    return (
       <section className={ `flex flex-col gap-3 grow ${ colorTheme.theme === 'bg-slate-100' ? 'bg-slate-100' : 'bg-slate-700'}` } >

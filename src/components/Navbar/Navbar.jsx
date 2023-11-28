@@ -16,7 +16,7 @@ const handleToogle = () => {
 }
 
   const getAllProducts = () => {
-    fetch("https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products")
+    fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((data) => {
         const categories = [...new Set(data.map( product => product.category ))]
@@ -30,7 +30,7 @@ const handleToogle = () => {
   }, [])
 
   return (
-    <nav className='flex justify-around bg-lime-200 w-full py-2 text-gray-600'>
+    <nav className='flex justify-around border border-b-2 border-b-[#FF7799] w-full py-2 text-gray-600'>
       <section className="flex items-center">
         <img src="./images/store.png" alt="cart icon" />
         <Link to={"/"} className="flex justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-sm hover:bg-lime-300 ms-3 font-sansSerif">Home</Link>
@@ -44,7 +44,9 @@ const handleToogle = () => {
         )}
       </section>
       <ToogleThemeWidget themeChange={ handleToogle } />
-      <CartWidget />
+      <Link to={"/cart"}>
+        <CartWidget />
+      </Link>
     </nav>
   )
 }

@@ -4,6 +4,7 @@ import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CartProvider from '../context/CartProvider.jsx'
 import ThemeProvider from '../context/ThemeProvider.jsx'
+import Cart from '../components/Cart/Cart.jsx'
 
 export const Layout = () => {
 
@@ -20,6 +21,7 @@ export const Layout = () => {
                         <Route path="/" element={ <ItemListContainer greeting="These are our products"/> } />
                         <Route path="/category/:categoryParam" element={ <ItemListContainer greeting="Filtered Products"/> } />
                         <Route path="/item/:id" element={ <ItemDetailContainer /> } />
+                        <Route path="/cart" element={ <Cart /> } />
                      </Routes>
                   <footer className=' bg-lime-200 h-[15vh] '>Footer</footer>
                </div>

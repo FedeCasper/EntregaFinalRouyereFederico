@@ -11,7 +11,7 @@ const ItemDetailContainer = () => {
    const [productSelected, setProductSelected] = useState(id);
 
    const getProduct = (id) => {
-      fetch(`https://6539a6a8e3b530c8d9e89144.mockapi.io/api/casper/products/${id}`)
+      fetch(`https://fakestoreapi.com/products/${id}`)
       .then( (res) => res.json() )
       .then((data) => {
          setProductSelected(data)
@@ -24,7 +24,7 @@ const ItemDetailContainer = () => {
    }, [])
 
    return (
-      <section className=' flex flex-col gap-4 bg-gradient-to-t from-slate-300 to-slate-200 grow justify-center items-center'>
+      <section className=' flex flex-col grow gap-4 bg-gradient-to-t from-slate-300 to-slate-200 justify-center items-center'>
          { id && 
          <ItemDetail productSelected={ productSelected }>
             <ItemCount productSelected={ productSelected }/>

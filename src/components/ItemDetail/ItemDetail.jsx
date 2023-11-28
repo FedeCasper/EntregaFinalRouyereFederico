@@ -1,17 +1,17 @@
 
-const ItemDetail = ( {productSelected, children} ) => {
-  const {id, name, image, price, description} = productSelected
+const ItemDetail = ( { productSelected, children } ) => {
+  const { title, image, price, description } = productSelected
   return (
     <>
       <h1>Product Details</h1>
-      <div className='flex h-2/3 w-10/12 bg-lime-200 p-3'>
-        <img src={image + "?id=" +id} alt={name} className="h-full w-1/3 object-cover mb-2"/>
+      <div className='flex w-10/12 lg:w-3/6 bg-lime-200 p-3'>
+        <img src={image} alt={title} className="h-full w-1/3 object-contain mb-2 bg-white p-3"/>
         <article className="h-full flex flex-col px-4">
           <h2 className=" font-bold first-letter:uppercase text-2xl mb-2">
-            {name}
+            {title}
           </h2>
           <p className="font-medium first-letter:uppercase text-xl mb-2">
-            {price}
+            UDS {price}
           </p>
           <p className=" italic text-sm mb-2">
             {description}
