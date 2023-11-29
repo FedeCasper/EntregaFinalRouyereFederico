@@ -7,7 +7,10 @@ const CartProvider = ( {children} ) => {
   const [ productQuantity, setProductQuantity ] = useState( 0 )
 
   const addItem = ( product, quantity ) => {
+
+    // If the product is in the cart
     if ( isInCart( product.id ) ) {
+      
       const newProducts = products.map( productInCart => {
         if ( productInCart.id === product.id ) {
           return {
@@ -18,11 +21,14 @@ const CartProvider = ( {children} ) => {
         return productInCart
       } )
       setProducts( newProducts )
+
+    // If the product is not in the cart
     } else {
       setProducts(
         [ ...products, { ...product, quantity, }, ]
       );
     }
+
   };
 
   const removeItem = ( id ) => {
