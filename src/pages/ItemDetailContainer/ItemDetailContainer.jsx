@@ -1,36 +1,34 @@
-import { useState, useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
 import ItemDetail from "../../components/ItemDetail/ItemDetail.jsx";
 import { useParams } from "react-router-dom";
 import ItemCount from "../../components/ItemCount/ItemCount.jsx";
-
-import React from 'react'
+import { ThemeContext } from "../../context/ThemeContext.jsx";
+import { ProductsContext } from "../../context/ProductsContext.jsx";
+import SyncLoader from "react-spinners/SyncLoader";
 
 const ItemDetailContainer = () => {
 
    const { id } = useParams();
-   const [productSelected, setProductSelected] = useState(id);
+   const colorTheme = useContext(ThemeContext)
+   const { product, resetProduct, getProductById } = useContext( ProductsContext );
 
-   const getProduct = (id) => {
-      fetch(`https://fakestoreapi.com/products/${id}`)
-      .then( (res) => res.json() )
-      .then((data) => {
-         setProductSelected(data)
-      })
-      .catch( (err) => console.log(err) )
-   }
-
-   useEffect( () => {
-      getProduct(id)
-   }, [])
+   useEffect(() => {
+      getProductById(id)
+      return () => {
+         resetProduct();
+      }
+   }, []);
 
    return (
-      <section className=' flex flex-col grow gap-4 bg-gradient-to-t from-slate-300 to-slate-200 justify-center items-center'>
-         { id && 
-         <ItemDetail productSelected={ productSelected }>
-            <ItemCount productSelected={ productSelected }/>
-         </ItemDetail> }
+      <section className={ `flex flex-col justify-center items-center gap-3 grow ${ colorTheme.theme === 'bg-slate-100' ? 'bg-slate-100' : 'bg-slate-700'}` }>
+         {
+            !product.title ? 
+               <SyncLoader color="pink" /> :
+               <ItemDetail productSelected={ product } >
+                  <ItemCount productSelected={ product }/>
+               </ItemDetail> 
+         }
       </section>
-
    )
 }
 

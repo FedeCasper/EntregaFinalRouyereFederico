@@ -5,7 +5,6 @@ const ThemeProvider = ({ children }) => {
 
    const [ theme, setTheme ] = useState( 'bg-slate-100' )
 
-
    return (
       <ThemeContext.Provider value={{ theme, setTheme }}>
          {children}

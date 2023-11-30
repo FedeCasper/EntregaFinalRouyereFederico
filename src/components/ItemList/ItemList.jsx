@@ -1,48 +1,52 @@
 import Item from '../Item/Item.jsx'
-import { useEffect, useState } from "react" 
+import { useContext, useEffect, useState } from "react" 
 import PulseLoader from "react-spinners/PulseLoader";
 import { Link, useParams } from 'react-router-dom';
+import { ProductsContext } from '../../context/ProductsContext.jsx';
 
 const ItemList = () => {
 
-   const [productList, setProductList] = useState([]);
-   const [filteredList, setFilteredList] = useState([]);
-   const [loader, setLoader] = useState(true);
+   const [ filteredList, setFilteredList ] = useState([]);
+   const [ loader, setLoader ] = useState( true );
    const { categoryParam } = useParams(); 
+   const { productsList, product, setProduct, getProductById } = useContext( ProductsContext );
 
-   const getAllProducts = async () => {
-      fetch("https://fakestoreapi.com/products", {
-         method: "GET",
-         headers: {
-            "access-control-allow-origin": "*"
-         }
-      })
-      .then( (res) => res.json() )
-      .then((data) => {
-         console.log("me ejecuté getAllProducts function");
-         setProductList(data)
-         setLoader(false)
-      })
-      .catch( (err) => console.log(err) )
-   }
+   // Data de fakeApi
+   // const getAllProducts = async () => {
+   //    fetch("https://fakestoreapi.com/products", {
+   //       method: "GET",
+   //       headers: {
+   //          "access-control-allow-origin": "*"
+   //       }
+   //    })
+   //    .then( (res) => res.json() )
+   //    .then((data) => {
+   //       setProductList(data)
+   //       setLoader(false)
+   //    })
+   //    .catch( (err) => console.log(err) )
+   // }
+
+   // useEffect( () => {
+   //    getAllProducts()
+   // }, [])
+
+   useEffect(() => {
+      setTimeout(() => {
+         setLoader(false);
+      }, 1000);
+   }, []);
 
    useEffect( () => {
-      console.log("Me ejecute useEffect getAllProducts");
-      getAllProducts()
-   }, [])
-
-   useEffect( () => {
-      console.log("Me ejecute useEffect categoryParam");
-         const filteredProducts = productList.filter( product => product.category === categoryParam )
-         console.log(filteredProducts);
-         filteredProducts.length ? setFilteredList( filteredProducts ) : setFilteredList(productList)
-   }, [categoryParam, productList])
+         const filteredProducts = productsList.filter( product => product.category == categoryParam )
+         filteredProducts.length ? setFilteredList( filteredProducts ) : setFilteredList(productsList)
+   }, [categoryParam, productsList])
 
    return (
    <section className=" flex justify-center flex-wrap gap-4">
       { loader ? 
          <PulseLoader color="gray" /> :
-         filteredList.map( ({id, title, description, price, image, category}) => 
+         filteredList && filteredList.map( ({id, title, description, price, image, category}) => 
          <Link 
             key={id} 
             to={`/item/${id}`}
