@@ -4,8 +4,9 @@ import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CartProvider from '../context/CartProvider.jsx'
 import ThemeProvider from '../context/ThemeProvider.jsx'
-import Cart from '../components/Cart/Cart.jsx'
 import ProductsProvider from '../context/ProductsProvider.jsx'
+import Cart from '../components/Cart/Cart.jsx'
+import Checkout from '../components/Checkout/Checkout.jsx'
 
 export const Layout = () => {
 
@@ -24,6 +25,7 @@ export const Layout = () => {
                            <Route path="/category/:categoryParam" element={ <ItemListContainer greeting="Filtered Products"/> } />
                            <Route path="/item/:id" element={ <ItemDetailContainer /> } />
                            <Route path="/cart" element={ <Cart /> } />
+                           <Route path="/checkout" element={ <Checkout /> } />
                            <Route path="/*" element={ <h1>Not Found</h1> } />
                         </Routes>
                      <footer className=' bg-lime-200 h-[15vh] '>Footer</footer>

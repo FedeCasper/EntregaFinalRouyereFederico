@@ -31,6 +31,8 @@ const ItemList = () => {
    //    getAllProducts()
    // }, [])
 
+   console.log(productsList);
+
    useEffect(() => {
       setTimeout(() => {
          setLoader(false);
@@ -46,7 +48,7 @@ const ItemList = () => {
    <section className=" flex justify-center flex-wrap gap-4">
       { loader ? 
          <PulseLoader color="gray" /> :
-         filteredList && filteredList.map( ({id, title, description, price, image, category}) => 
+         filteredList && filteredList.map( ({id, title, description, price, image, category, stock}) => 
          <Link 
             key={id} 
             to={`/item/${id}`}
@@ -57,6 +59,7 @@ const ItemList = () => {
                price={price} 
                image={image} 
                category={category}
+               stock={stock}
             /> 
          </Link>
          ) 
