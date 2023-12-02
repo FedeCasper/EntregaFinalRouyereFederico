@@ -18,64 +18,37 @@ This project is a straightforward CRUD (Create, Read, Update, Delete) applicatio
    https://github.com/FedeCasper/PreEntrega2RouyereFederico.git
 2. Navigate to the project directory: 
    ```bash
-   cd test-wiber
+   cd EntregaFinalRouyereFederico
+3. Run the app: 
+   ```bash
+   npm start
+4. Install dependencies: 
+   ```bash
+   npm install
 
-### `npm start`
+### Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The application features a main page showcasing all available products. The navigation bar includes a section allowing users to filter products based on categories. Clicking on a product card navigates to a detailed view, providing comprehensive information about the product. Additionally, users can add the product to their shopping cart.
 
-### `npm test`
+### Database
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This project uses Firestore ( Firebase ) as its database. Ensure you have an account on Firebase and follow these steps:
 
-### `npm run build`
+1. To set up Firebase for your project, make sure to replace the placeholder values in the firebaseConfig object with your actual Firebase credentials. You can obtain these credentials from your Firebase project settings in the `Firebase Console`. Replace `firebasecongif` with your API key, authentication domain, project ID, storage bucket, messaging sender ID, and app ID to ensure a secure and functional connection to Firebase services. 
+   ```bash
+   const firebaseConfig = {
+   apiKey: "YOUR_API_KEY",
+   authDomain: "YOUR_AUTH_DOMAIN",
+   projectId: "YOUR_PROJECT_ID",
+   storageBucket: "YOUR_STORAGE_BUCKET",
+   messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+   appId: "YOUR_APP_ID"
+   }
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Extra Dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The project utilizes a few additional dependencies beyond the specified requirements for the assignment, including Material Icons, Tailwind CSS, and React Spinners. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Material Icons enhance the visual elements. () [Material Icons](https://mui.com/)
+- Tailwind CSS provides a utility-first styling approach for efficient and responsive design. [React Spinners](https://tailwindcss.com/)
+- React Spinners offer customizable loading spinners for a better user experience. [React Spinners](https://www.npmjs.com/package/react-spinners)
