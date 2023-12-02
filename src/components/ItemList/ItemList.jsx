@@ -2,14 +2,16 @@ import Item from '../Item/Item.jsx'
 import { useContext, useEffect, useState } from "react" 
 import PulseLoader from "react-spinners/PulseLoader";
 import { Link, useParams } from 'react-router-dom';
-import { ProductsContext } from '../../context/ProductsContext.jsx';
+import db from '../../firebaseConfig/firebaseConfig.js';
+import { collection, getDocs } from 'firebase/firestore';
+
 
 const ItemList = () => {
 
    const [ filteredList, setFilteredList ] = useState([]);
    const [ loader, setLoader ] = useState( true );
    const { categoryParam } = useParams(); 
-   const { productsList, product, setProduct, getProductById } = useContext( ProductsContext );
+   const [ productsList, setProductList ] =  useState([]);
 
    // Data de fakeApi
    // const getAllProducts = async () => {
@@ -31,7 +33,25 @@ const ItemList = () => {
    //    getAllProducts()
    // }, [])
 
-   console.log(productsList);
+   const getAllProducts = () => {
+      const productCollection = collection(db, "products");
+      getDocs(productCollection)
+      .then( snapshot => {
+         if (snapshot.size === 0) {
+            console.log("There are no products");
+         }
+         setProductList(
+            snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+         );
+      })
+      .catch((error) => {
+         console.log(error);
+      });
+   };
+
+   useEffect(() => {
+      getAllProducts();
+   }, []);
 
    useEffect(() => {
       setTimeout(() => {
@@ -40,7 +60,9 @@ const ItemList = () => {
    }, []);
 
    useEffect( () => {
-         const filteredProducts = productsList.filter( product => product.category == categoryParam )
+      console.log(categoryParam);
+      console.log(productsList);
+         const filteredProducts = productsList.filter( product => product.category === categoryParam )
          filteredProducts.length ? setFilteredList( filteredProducts ) : setFilteredList(productsList)
    }, [categoryParam, productsList])
 

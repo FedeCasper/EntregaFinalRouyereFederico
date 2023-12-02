@@ -1,18 +1,29 @@
-# Getting Started with Create React App
+# React Firebase CRUD E-commerce
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+This project is a straightforward CRUD (Create, Read, Update, Delete) application developed using React and Firebase. It serves as a platform for creating purchase orders based on selected products, offering category-based filtering, and providing a shopping cart feature.
+
+### Prerequisites
+
+- Node.js 
+- Firebase
+
+### Steps
+
+1. Clone the Repository:
+   ```bash
+   https://github.com/FedeCasper/PreEntrega2RouyereFederico.git
+2. Navigate to the project directory: 
+   ```bash
+   cd test-wiber
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
 ### `npm test`
 

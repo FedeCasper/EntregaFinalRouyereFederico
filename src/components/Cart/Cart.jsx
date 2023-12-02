@@ -1,8 +1,11 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import Item from '../Item/Item';
 import { collection, addDoc, getFirestore, doc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { ThemeContext } from "../../context/ThemeContext.jsx";
+import { OrderContext } from '../../context/OrderContext'
 
 const Cart = () => {
 
@@ -10,6 +13,11 @@ const Cart = () => {
    const [formValue, setFormValue] = useState({ name: '', lastName: '', phone: '', email: '' });
    const [confirmEmail, setConfirmEmail] = useState('');
    const navigate = useNavigate();
+   const [ total, setTotal ] = useState(0);
+   const colorTheme = useContext(ThemeContext)
+   const { orderId, setOrderId } = useContext( OrderContext );
+
+   console.log(orderId);
 
    const handleInput = (e) => {
       setFormValue({ ...formValue, [e.target.name]: e.target.value });
@@ -17,6 +25,10 @@ const Cart = () => {
 
    const handleConfirmEmail = (e) => {
       setConfirmEmail(e.target.value);
+   }
+
+   const totalCalculator = () => {
+      setTotal(products.reduce((total, product) => total + product.price * product.quantity, 0));
    }
 
    const validateForm = formValue.name === '' || formValue.lastName === '' || formValue.phone === '' || formValue.email === '' || formValue.confirmEmail === '' || formValue.email !== confirmEmail;
@@ -29,13 +41,14 @@ const Cart = () => {
          buyer: formValue,
          items: products.map(product => ({ id: product.id, title: product.title, price: product.price, quantity: product.quantity })),
          date: new Date(),
-         total: products.reduce((total, product) => total + product.price * product.quantity, 0),
+         total: total,
          state: 'generated'
       }
       addDoc(querySnapshot, newOrder)
          .then( res => {
             console.log('Order created', res.id);
             updateProductStock();
+            setOrderId(res.id);
             setTimeout(() => {
                clear();
                navigate('/checkout');
@@ -53,10 +66,12 @@ const Cart = () => {
       });
    }
 
-
+   useEffect(() => {
+      totalCalculator();
+   }, [products]);
 
    return (
-      <div className="flex flex-col justify-between gap-4 grow bg-slate-100 rounded-md w-full p-8">
+      <div className={ `flex flex-col justify-between gap-4 grow rounded-md w-full p-8 ${ colorTheme.theme === 'bg-slate-100' ? 'bg-slate-100' : 'bg-slate-700'}` }>
          <h2 className=" w-ful text-2xl font-sansSerif text-center text-gray-600 my-3"> Cart Section </h2>
 
          <section className="flex justify-between gap-4  p-2">
@@ -168,28 +183,25 @@ const Cart = () => {
                <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
             </div>
 
-
             <section className='flex flex-col justify-start grow flex-wrap'>
-               <button onClick={clear} className="self-center mb-5 w-full transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-md hover:bg-lime-300">Remove all products</button>
+               <button onClick={clear} className="self-center mb-2 w-full transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-md hover:bg-lime-300">Remove all products</button>
+               <div className="text-2xl font-sansSerif italic text-center text-gray-600 mb-3 bg-slate-200"> Total: ${total?.toFixed(2)} </div>
                {products.length ?
-                  <section className='flex justify-center gap-4 h-2/3 flex-wrap'>
+                  <section className='flex content-start gap-4 h-2/3 flex-wrap'>
                      {
-                        products.map(({ id, title, price, image, category, quantity, stock }) =>
+                        products.map(({ id, title, price, quantity, stock }) =>
                            <div key={id} className='flex flex-col gap-2'>
                               <Item
                                  title={title}
-                                 description={''}
                                  price={price}
-                                 image={image}
-                                 category={category}
                                  quantity={quantity}
                                  stock={stock}
                               />
                               <button
                                  onClick={() => removeItem(id)}
                                  type="button"
-                                 className="self-center w-full transition-all ease-in-out bg-[#A1A1A1] rounded p-2 drop-shadow-md hover:bg-[#ff7799]">
-                                 Remove
+                                 className="self-center w-full transition-all ease-in-out bg-[#A1A1A1] rounded p-1 drop-shadow-md hover:bg-[#ff7799]">
+                                 <DeleteForeverIcon />
                               </button>
                            </div>
                         )

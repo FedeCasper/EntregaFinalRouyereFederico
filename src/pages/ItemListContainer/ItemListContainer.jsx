@@ -8,8 +8,8 @@ const ItemListContainer = ( { greeting } ) => {
    const colorTheme = useContext(ThemeContext)
 
    return (
-      <section className={ `flex flex-col gap-3 grow ${ colorTheme.theme === 'bg-slate-100' ? 'bg-slate-100' : 'bg-slate-700'}` } >
-         <h2 className=" w-ful text-2xl font-sansSerif text-center text-gray-600 my-6"> {greeting} </h2>
+      <section className={ `flex flex-col gap-3 grow p-8 ${ colorTheme.theme === 'bg-slate-100' ? 'bg-slate-100' : 'bg-slate-700'}` } >
+         <h2 className=" w-ful text-2xl font-sansSerif text-center text-gray-600 my-2"> {greeting} </h2>
          <ItemList />
       </section>
    )

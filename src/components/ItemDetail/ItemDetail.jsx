@@ -4,8 +4,6 @@ const ItemDetail = ( { productSelected, children } ) => {
 
   const { title, image, price, description } = productSelected
 
-  console.log(productSelected);
-
   useEffect(() => {
     console.log(title);
   }, [productSelected]);
