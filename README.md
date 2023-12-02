@@ -49,6 +49,6 @@ This project uses Firestore ( Firebase ) as its database. Ensure you have an acc
 
 The project utilizes a few additional dependencies beyond the specified requirements for the assignment, including Material Icons, Tailwind CSS, and React Spinners. 
 
-- Material Icons enhance the visual elements. () [Material Icons](https://mui.com/)
-- Tailwind CSS provides a utility-first styling approach for efficient and responsive design. [React Spinners](https://tailwindcss.com/)
-- React Spinners offer customizable loading spinners for a better user experience. [React Spinners](https://www.npmjs.com/package/react-spinners)
+- [Material Icons](https://mui.com/): Material Icons enhance the visual elements. 
+- [React Spinners](https://tailwindcss.com/): Tailwind CSS provides a utility-first styling approach for efficient and responsive design. 
+- [React Spinners](https://www.npmjs.com/package/react-spinners): React Spinners offer customizable loading spinners for a better user experience. 
