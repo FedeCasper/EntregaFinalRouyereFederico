@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react'
 import { ThemeContext } from '../../context/ThemeContext'
 import { OrderContext } from '../../context/OrderContext'
 import { doc, getDoc } from 'firebase/firestore'
-import db from '../../firebaseConfig/firebaseConfig.js'
+import { db } from '../../firebaseConfig/firebaseConfig.js'
 
 const Checkout = () => {
 

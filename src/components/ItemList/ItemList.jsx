@@ -2,7 +2,7 @@ import Item from '../Item/Item.jsx'
 import { useContext, useEffect, useState } from "react" 
 import PulseLoader from "react-spinners/PulseLoader";
 import { Link, useParams } from 'react-router-dom';
-import db from '../../firebaseConfig/firebaseConfig.js';
+import { db } from '../../firebaseConfig/firebaseConfig.js'
 import { collection, getDocs } from 'firebase/firestore';
 
 

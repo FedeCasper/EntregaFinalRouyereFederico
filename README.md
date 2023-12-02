@@ -34,7 +34,7 @@ The application features a main page showcasing all available products. The navi
 
 This project uses Firestore ( Firebase ) as its database. Ensure you have an account on Firebase and follow these steps:
 
-1. To set up Firebase for your project, make sure to replace the placeholder values in the firebaseConfig object with your actual Firebase credentials. You can obtain these credentials from your Firebase project settings in the `Firebase Console`. Replace `firebasecongif` with your API key, authentication domain, project ID, storage bucket, messaging sender ID, and app ID to ensure a secure and functional connection to Firebase services. 
+1. To set up Firebase for your project, make sure to replace the placeholder values in the `firebaseConfig` object with your actual Firebase credentials. You can obtain these credentials from your Firebase project settings in the `Firebase Console`.  
    ```bash
    const firebaseConfig = {
    apiKey: "YOUR_API_KEY",
@@ -49,6 +49,6 @@ This project uses Firestore ( Firebase ) as its database. Ensure you have an acc
 
 The project utilizes a few additional dependencies beyond the specified requirements for the assignment, including Material Icons, Tailwind CSS, and React Spinners. 
 
-- [Material Icons](https://mui.com/): Material Icons enhance the visual elements. 
-- [React Spinners](https://tailwindcss.com/): Tailwind CSS provides a utility-first styling approach for efficient and responsive design. 
-- [React Spinners](https://www.npmjs.com/package/react-spinners): React Spinners offer customizable loading spinners for a better user experience. 
+- [Material Icons](https://mui.com/) : Material Icons enhance the visual elements. 
+- [React Spinners](https://tailwindcss.com/) : Tailwind CSS provides a utility-first styling approach for efficient and responsive design. 
+- [React Spinners](https://www.npmjs.com/package/react-spinners) : React Spinners offer customizable loading spinners for a better user experience. 

@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import ToogleThemeWidget from "../ToogleThemeWidget/ToogleThemeWidget.jsx";
-import db from "../../firebaseConfig/firebaseConfig.js";
+import { db } from '../../firebaseConfig/firebaseConfig.js'
 import { collection, getDocs } from "firebase/firestore";
 
 

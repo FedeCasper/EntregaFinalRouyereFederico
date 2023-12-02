@@ -5,7 +5,7 @@ import ItemCount from "../../components/ItemCount/ItemCount.jsx";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import SyncLoader from "react-spinners/SyncLoader";
 import { getDoc, doc } from "firebase/firestore";
-import db from "../../firebaseConfig/firebaseConfig.js";
+import { db } from "../../firebaseConfig/firebaseConfig.js";
 import { useNavigate } from "react-router-dom";
 
 const ItemDetailContainer = () => {
