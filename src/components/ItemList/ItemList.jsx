@@ -1,5 +1,5 @@
 import Item from '../Item/Item.jsx'
-import { useContext, useEffect, useState } from "react" 
+import { useEffect, useState } from "react" 
 import PulseLoader from "react-spinners/PulseLoader";
 import { Link, useParams } from 'react-router-dom';
 import { db } from '../../firebaseConfig/firebaseConfig.js'
@@ -60,8 +60,6 @@ const ItemList = () => {
    }, []);
 
    useEffect( () => {
-      console.log(categoryParam);
-      console.log(productsList);
          const filteredProducts = productsList.filter( product => product.category === categoryParam )
          filteredProducts.length ? setFilteredList( filteredProducts ) : setFilteredList(productsList)
    }, [categoryParam, productsList])

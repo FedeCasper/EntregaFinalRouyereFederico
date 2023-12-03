@@ -1,5 +1,5 @@
-
 import { useEffect } from "react";
+
 const ItemDetail = ( { productSelected, children } ) => {
 
   const { title, image, price, description } = productSelected

@@ -5,13 +5,16 @@ import { ThemeContext } from "../../context/ThemeContext.jsx";
 import ToogleThemeWidget from "../ToogleThemeWidget/ToogleThemeWidget.jsx";
 import { db } from '../../firebaseConfig/firebaseConfig.js'
 import { collection, getDocs } from "firebase/firestore";
+import { AuthContext } from "../../context/AuthContext.jsx";
+import { getAuth, signOut } from 'firebase/auth';
 
 
 const Navbar = () => {
 
   const { theme, setTheme } = useContext(ThemeContext);
+  const { authUser, setAuthUser } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
-  const [ productsList, setProductList ] =  useState([]);
+  const [productsList, setProductList] = useState([]);
   const navigate = useNavigate();
 
   const getAllProducts = () => {
@@ -57,10 +60,23 @@ const Navbar = () => {
   const handleSelectChange = (event) => {
     console.log(event.target.value);
     const category = event.target.value;
-    if(category) {
+    if (category) {
       navigate(`/category/${category}`);
     }
   }
+
+  const handleLogout = () => {
+    try {
+      const auth = getAuth();
+      signOut(auth);
+      setTimeout(() => {
+        setAuthUser(null);
+        navigate('/')
+      }, 1000);
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error.message);
+    }
+  };
 
   useEffect(() => {
     getAllCategories()
@@ -70,6 +86,7 @@ const Navbar = () => {
   }, [productsList])
 
   return (
+      authUser?.auth?.currentUser &&
     <nav className='flex justify-around border border-b-2 border-b-[#FF7799] w-full py-2 text-gray-600'>
       <section className="flex items-center">
         <img src="/images/store.png" alt="cart icon" />
@@ -79,8 +96,8 @@ const Navbar = () => {
         <label className="flex w-full">
           <select name="categories" id="selectedOption" className='bg-[#CBD5E1] rounded p-2 drop-shadow-sm w-full' onChange={handleSelectChange}>
             <option value="all">All</option>
-            {categories && categories.map( cat =>
-                <option key={cat.id} value={cat.description} className="hover:bg-[#ff7799]">{cat.description}</option>
+            {categories && categories.map(cat =>
+              <option key={cat.id} value={cat.description} className="hover:bg-[#ff7799]">{cat.description}</option>
             )}
           </select>
         </label>
@@ -91,7 +108,9 @@ const Navbar = () => {
           <CartWidget />
         </Link>
       </section>
+      <button className="flex self-center justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-sm hover:bg-[#30E0A1] ms-3 font-sansSerif" onClick={handleLogout}>Logout</button>
     </nav>
+
   )
 }
 
