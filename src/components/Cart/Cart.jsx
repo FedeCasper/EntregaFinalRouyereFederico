@@ -19,8 +19,6 @@ const Cart = () => {
    const { orderId, setOrderId } = useContext( OrderContext );
    const { authUser } = useContext( AuthContext );
 
-   console.log(orderId);
-
    const handleInput = (e) => {
       setFormValue({ ...formValue, [e.target.name]: e.target.value });
    }
@@ -38,8 +36,9 @@ const Cart = () => {
 
    const createOrder = (e) => {
       e.preventDefault();
-      const stock = products.some( product => ( product.stock < product.quantity ) );
-      if ( stock ) {
+      const noStock = products.some( product => ( product.stock < product.quantity ) );
+      console.log(noStock);
+      if ( !noStock ) {
          const querySnapshot = collection(db, 'orders');
          const newOrder = {
             buyer: formValue,
