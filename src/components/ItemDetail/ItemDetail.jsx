@@ -1,8 +1,11 @@
 import { useEffect } from "react";
+import WishListWidget from "../WishListWidget/WishListWidget";
 
 const ItemDetail = ( { productSelected, children } ) => {
 
   const { title, image, price, description } = productSelected
+
+
 
   useEffect(() => {
     console.log(title);
@@ -10,7 +13,7 @@ const ItemDetail = ( { productSelected, children } ) => {
 
   return (
     <>
-      <div className='flex justify-between gap-4 w-10/12 lg:w-3/6 bg-[#E5E5E5] p-3 shadow-md'>
+      <div className='relative flex justify-between gap-4 w-10/12 lg:w-3/6 bg-[#E5E5E5] p-3 shadow-md'>
         <img src={image} alt={title} className="h-full w-3/6 object-cover mb-2 bg-white p-1"/>
         <article className="h-full flex flex-col w-3/6">
           <h2 className=" font-bold first-letter:uppercase text-2xl mb-2">
@@ -26,6 +29,7 @@ const ItemDetail = ( { productSelected, children } ) => {
             {children}
           </div>
         </article>
+        <WishListWidget productSelected={productSelected} />
       </div>
     </>
   )

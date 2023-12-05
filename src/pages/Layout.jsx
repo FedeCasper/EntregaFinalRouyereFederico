@@ -14,6 +14,7 @@ import React, { SuspenseWithPerf } from 'reactfire';
 import { FirebaseAppProvider } from 'reactfire';
 import { firebaseConfig } from '../firebaseConfig/firebaseConfig.js';
 import AuthGuard from '../Guards/Auth.Guard.jsx'
+import WishListContainer from './WishListContainer/WishListContainer.jsx'
 
 export const Layout = () => {
 
@@ -33,6 +34,7 @@ export const Layout = () => {
                               <Routes>
                                  <Route element={<AuthGuard />}>
                                     <Route path="/home" element={<ItemListContainer greeting="These are our products" />} />
+                                    <Route path="/wishlist" element={ <WishListContainer /> } />
                                     <Route path="/category/:categoryParam" element={<ItemListContainer greeting="Filtered Products" />} />
                                     <Route path="/item/:id" element={<ItemDetailContainer />} />
                                     <Route path="/cart" element={<Cart />} />

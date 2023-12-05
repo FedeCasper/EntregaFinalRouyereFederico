@@ -7,6 +7,7 @@ import { db } from '../../firebaseConfig/firebaseConfig.js'
 import { collection, getDocs } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { getAuth, signOut } from 'firebase/auth';
+import ViewListIcon from '@mui/icons-material/ViewList';
 
 const Navbar = () => {
 
@@ -86,11 +87,13 @@ const Navbar = () => {
 
   return (
       authUser?.auth?.currentUser &&
-    <nav className='flex justify-around w-full text-gray-600'>
+    <nav className='flex justify-between w-full px-8 text-gray-600'>
+
       <section className="flex items-center">
         <img src="/images/store.png" alt="cart icon" />
         <Link to={"/home"} className="flex justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#30E0A1] rounded p-2 drop-shadow-sm hover:bg-[#ff7799] ms-3 font-sansSerif">Home</Link>
       </section>
+
       <section className=' flex justify-center items-center gap-3 font-sansSerif w-1/3'>
         <label className="flex w-full">
           <select name="categories" id="selectedOption" className='bg-[#CBD5E1] rounded p-2 drop-shadow-sm w-full' onChange={handleSelectChange}>
@@ -101,13 +104,18 @@ const Navbar = () => {
           </select>
         </label>
       </section>
-      <section className="flex items-center gap-8">
+
+      <section className="flex items-center gap-4">
         <ToogleThemeWidget themeChange={handleToogle} />
+        <Link to={"/wishList"}>
+          <ViewListIcon fontSize='large' titleAccess="Wish List"/>
+        </Link>
         <Link to={"/cart"} className="flex items-center">
           <CartWidget />
         </Link>
+        <button className="flex self-center justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-sm duration-300 hover:scale-95 hover:bg-[#30E0A1] ms-3 font-sansSerif" onClick={handleLogout}>Logout</button>
       </section>
-      <button className="flex self-center justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-sm duration-300 hover:scale-95 hover:bg-[#30E0A1] ms-3 font-sansSerif" onClick={handleLogout}>Logout</button>
+      
     </nav>
 
   )
