@@ -25,8 +25,8 @@ export const Layout = () => {
                   <ThemeProvider>
                      <CartProvider>
                         <div className='flex flex-col h-[100vh]'>
-                           <header className='flex flex-col justify-between items-center bg-neutral-200 h-[20vh]' >
-                              <h1 className='flex items-center font-serif pt-8 font-bold text-2xl text-gray-600'>Casper's Store</h1>
+                           <header className='flex flex-col justify-center items-center gap-4 bg-neutral-200 h-[15%] py-4 border border-b-2 border-b-[#FF7799]' >
+                              <h1 className='flex items-center font-serif font-bold text-2xl text-gray-600'>Welcome to Casper's Store</h1>
                               <Navbar />
                            </header>
                            <OrderProvider>

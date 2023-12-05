@@ -87,10 +87,10 @@ const Navbar = () => {
 
   return (
       authUser?.auth?.currentUser &&
-    <nav className='flex justify-around border border-b-2 border-b-[#FF7799] w-full py-2 text-gray-600'>
+    <nav className='flex justify-around w-full text-gray-600'>
       <section className="flex items-center">
         <img src="/images/store.png" alt="cart icon" />
-        <Link to={"/"} className="flex justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#30E0A1] rounded p-2 drop-shadow-sm hover:bg-[#ff7799] ms-3 font-sansSerif">Home</Link>
+        <Link to={"/home"} className="flex justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#30E0A1] rounded p-2 drop-shadow-sm hover:bg-[#ff7799] ms-3 font-sansSerif">Home</Link>
       </section>
       <section className=' flex justify-center items-center gap-3 font-sansSerif w-1/3'>
         <label className="flex w-full">

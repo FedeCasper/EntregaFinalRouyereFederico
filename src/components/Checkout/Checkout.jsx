@@ -70,7 +70,7 @@ const Checkout = () => {
                 Total:
               </td>
               <td className="text-sm text-gray-700 font-bold px-6 py-4 whitespace-nowrap">
-              ${order?.total?.toFixed(2)}
+              ${order?.total?.toLocaleString()}
               </td>
             </tr>
           </tbody>

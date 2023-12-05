@@ -7,20 +7,13 @@ const AuthProvider = ({ children }) => {
    const [ authUser, setAuthUser ] = useState({})
 
    const auth = getAuth();
-   const isLoggedIn = () => {
-      if (auth.currentUser) {
-         return true
-      } else {
-         return false
-      }
-   }
 
    useEffect(() => {
       setAuthUser(auth)
    }, [])
 
    return (
-      <AuthContext.Provider value={ { authUser, setAuthUser, isLoggedIn } }>
+      <AuthContext.Provider value={ { authUser, setAuthUser } }>
          {children}
       </AuthContext.Provider>
    )

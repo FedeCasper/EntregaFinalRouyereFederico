@@ -188,7 +188,7 @@ const Cart = () => {
 
             <section className='flex flex-col justify-start grow flex-wrap'>
                <button onClick={clear} className="self-center mb-2 w-full transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-md hover:bg-lime-300">Remove all products</button>
-               <div className="text-2xl font-sansSerif italic text-center text-gray-600 mb-3 bg-slate-200"> Total: ${total?.toFixed(2)} </div>
+               <div className="text-2xl font-sansSerif italic text-center text-gray-600 mb-3 bg-slate-200"> Total: ${total?.toLocaleString() } </div>
                {products.length ?
                   <section className='flex content-start gap-4 h-2/3 flex-wrap'>
                      {
