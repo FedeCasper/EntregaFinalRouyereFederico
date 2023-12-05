@@ -8,7 +8,6 @@ import { collection, getDocs } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { getAuth, signOut } from 'firebase/auth';
 
-
 const Navbar = () => {
 
   const { theme, setTheme } = useContext(ThemeContext);

@@ -43,7 +43,7 @@ Once you're inside the site the application features a main page showcasing all 
 
 This project uses Firestore ( Firebase ) as its database. Ensure you have an account on Firebase and follow these steps:
 
-1. To set up Firebase for your project, make sure to replace the placeholder values in the `firebaseConfig` object with your actual Firebase credentials. You can obtain these credentials from your Firebase project settings in the `Firebase Console`.  
+- To set up Firebase for your project, make sure to replace the placeholder values in the `firebaseConfig` object with your actual Firebase credentials. You can obtain these credentials from your Firebase project settings in the `Firebase Console`.  
    ```bash
    const firebaseConfig = {
    apiKey: "YOUR_API_KEY",
