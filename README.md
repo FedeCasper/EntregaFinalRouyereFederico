@@ -29,13 +29,15 @@ This project is a straightforward CRUD (Create, Read, Update, Delete) applicatio
 ### Usage
 
 You can log in as a trial user with the following credentials:
-- User emal:
+- User email:
    ```bash
    user@mail.com
 - User password:
    ```bash
    123456
-Or you can create a user from the Register form. Once you're inside the site the application features a main page showcasing all available products. The navigation bar includes a section allowing users to filter products based on categories. Clicking on a product card navigates to a detailed view, providing comprehensive information about the product. Additionally, users can add the product to their shopping cart.
+Or you can create a new user from the Register form.
+
+Once you're inside the site the application features a main page showcasing all available products. The navigation bar includes a section allowing users to filter products based on categories. Clicking on a product card navigates to a detailed view, providing comprehensive information about the product. Additionally, users can add the product to their shopping cart.
 
 ### Database
 
