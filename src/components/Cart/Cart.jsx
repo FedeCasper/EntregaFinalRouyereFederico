@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import { OrderContext } from '../../context/OrderContext'
+import { AuthContext } from '../../context/AuthContext';
 
 const Cart = () => {
 
@@ -16,6 +17,7 @@ const Cart = () => {
    const [ total, setTotal ] = useState(0);
    const colorTheme = useContext(ThemeContext)
    const { orderId, setOrderId } = useContext( OrderContext );
+   const { authUser, setAuthUser } = useContext( AuthContext );
 
    console.log(orderId);
 
@@ -81,6 +83,7 @@ const Cart = () => {
                <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
                   <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">Confirm order</h4>
                   <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">Enter your details to complete the process.</p>
+                  <p className='text-white italic bg-[#FF7799] rounded-md p-2 mt-4 text-center'> You're about to make a purchase as ❕<br></br> { authUser ? authUser.email : 'anonymous user' }</p>
 
                   {/* Form starts ---------------------------- */}
                   <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
@@ -168,7 +171,7 @@ const Cart = () => {
                      </div>
 
                      <button
-                        className="mt-6 block w-full select-none rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="mt-6 block w-full select-none rounded-lg bg-[#FF7799] py-3 px-6 text-center align-middle font-sans text-xs font-bold text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="submit"
                         data-ripple-light="true"
                         onClick={createOrder}
