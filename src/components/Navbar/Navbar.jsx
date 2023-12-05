@@ -107,7 +107,7 @@ const Navbar = () => {
           <CartWidget />
         </Link>
       </section>
-      <button className="flex self-center justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-sm hover:bg-[#30E0A1] ms-3 font-sansSerif" onClick={handleLogout}>Logout</button>
+      <button className="flex self-center justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-sm duration-300 hover:scale-95 hover:bg-[#30E0A1] ms-3 font-sansSerif" onClick={handleLogout}>Logout</button>
     </nav>
 
   )

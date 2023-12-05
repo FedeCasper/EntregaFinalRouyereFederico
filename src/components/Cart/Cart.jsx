@@ -17,7 +17,7 @@ const Cart = () => {
    const [ total, setTotal ] = useState(0);
    const colorTheme = useContext(ThemeContext)
    const { orderId, setOrderId } = useContext( OrderContext );
-   const { authUser, setAuthUser } = useContext( AuthContext );
+   const { authUser } = useContext( AuthContext );
 
    console.log(orderId);
 
@@ -38,25 +38,31 @@ const Cart = () => {
 
    const createOrder = (e) => {
       e.preventDefault();
-      const querySnapshot = collection(db, 'orders');
-      const newOrder = {
-         buyer: formValue,
-         items: products.map(product => ({ id: product.id, title: product.title, price: product.price, quantity: product.quantity })),
-         date: new Date(),
-         total: total,
-         state: 'generated'
+      const stock = products.some( product => ( product.stock < product.quantity ) );
+      if ( stock ) {
+         const querySnapshot = collection(db, 'orders');
+         const newOrder = {
+            buyer: formValue,
+            items: products.map(product => ({ id: product.id, title: product.title, price: product.price, quantity: product.quantity })),
+            date: new Date(),
+            total: total,
+            state: 'generated'
+         }
+         addDoc(querySnapshot, newOrder)
+            .then( res => {
+               console.log('Order created', res.id);
+               updateProductStock();
+               setOrderId(res.id);
+               setTimeout(() => {
+                  clear();
+                  navigate('/checkout');
+               }, 1000);
+            })
+            .catch(error => console.log(error));
+      } else {
+         console.log("There's not enough stock");
+         alert('Something went wrong');
       }
-      addDoc(querySnapshot, newOrder)
-         .then( res => {
-            console.log('Order created', res.id);
-            updateProductStock();
-            setOrderId(res.id);
-            setTimeout(() => {
-               clear();
-               navigate('/checkout');
-            }, 1000);
-         })
-         .catch(error => console.log(error));
    }
 
    const updateProductStock = ( product ) => {
