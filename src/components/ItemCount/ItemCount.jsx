@@ -2,13 +2,13 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { useContext, useRef, useState } from "react"
 import { CartContext } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
 
 
 const ItemCount = ( { productSelected } ) => {
 
    const [quantity, setQuantity] = useState(0);
-   const refStock = useRef(10);
-   const { addItem, productQuantity } = useContext(CartContext);
+   const { addItem } = useContext(CartContext);
    const [ alert, setAlert ] = useState('')
 
    function addQuantity(){
@@ -53,7 +53,7 @@ const ItemCount = ( { productSelected } ) => {
                </div>
             </div>
             <button onClick={ addToCart } className="w-full transition-all ease-in-out bg-[#30E0A1] rounded p-2 drop-shadow-md hover:bg-[#35a880]">Agregar al carrito</button>
-            <button className="w-full transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-md hover:bg-[#ee537a]">Terminar compra</button>
+            <Link to={'/cart'} className="flex justify-center w-full transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-md hover:bg-[#ee537a]">Terminar compra</Link>
       </div>
    )
 }

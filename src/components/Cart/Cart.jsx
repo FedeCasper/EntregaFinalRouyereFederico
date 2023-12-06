@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
-import Item from '../Item/Item';
+import Item from '../Item/Item.jsx';
 import { collection, addDoc, getFirestore, doc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';

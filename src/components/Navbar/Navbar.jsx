@@ -108,7 +108,7 @@ const Navbar = () => {
       <section className="flex items-center gap-4">
         <ToogleThemeWidget themeChange={handleToogle} />
         <Link to={"/wishList"}>
-          <ViewListIcon fontSize='large' titleAccess="Wish List"/>
+          <ViewListIcon fontSize='large' titleAccess="Wish List" className="hover:text-[#FF7799] hover:scale-95"/>
         </Link>
         <Link to={"/cart"} className="flex items-center">
           <CartWidget />
