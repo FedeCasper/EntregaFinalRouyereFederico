@@ -13,6 +13,11 @@ const WishListProvider = ({ children }) => {
       }
    }
 
+   const clearWishList = () => {
+      sessionStorage.clear();
+      setWishList([]); 
+   };
+
    const addToWishList = (product) => {
       setWishList((prevWishList) => {
          const newWishList = [...prevWishList, product];
@@ -21,17 +26,12 @@ const WishListProvider = ({ children }) => {
       });
    };
 
-   const clearWishList = () => {
-      setWishList([]);
-      sessionStorage.clear();
-   };
-
    useEffect(() => {
       getWishList();
    }, []);
 
    return (
-      <WishListContext.Provider value={{ wishList, getWishList, addToWishList, clearWishList  }}>
+      <WishListContext.Provider value={{ wishList, setWishList, getWishList, addToWishList, clearWishList  }}>
          {children}
       </WishListContext.Provider>
    );
