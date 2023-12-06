@@ -5,7 +5,8 @@ const Item = ({title, description, price, image, category, quantity, stock}) => 
 
    return (
       <div className="flex flex-col justify-between h-full bg-[#CCCCCC] rounded-md h-min-48 w-48 p-2 cursor-pointer shadow-md transition hover:bg-[#FF7799] hover:scale-95">
-         <section>
+         <section className='relative'>
+            
             {
                image && <img src={image} alt={title} className="h-32 w-full object-cover mb-2 bg-white p-2"/>
             }

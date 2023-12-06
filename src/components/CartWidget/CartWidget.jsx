@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { CartContext } from "../../context/CartContext"
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const CartWidget = () => {
 
@@ -7,10 +8,10 @@ const CartWidget = () => {
 
    return (
       <div className="flex items-center w-fit relative cursor-pointer group">
-         <div className=" transition-all ease-in-out duration-500 flex justify-center items-center bg-[#FF7799] rounded-full w-6 h-6 absolute top-3 left-5 group-hover:scale-150">
+         <div className=" transition-all ease-in-out duration-500 flex justify-center items-center bg-[#FF7799] rounded-full w-5 h-5 absolute top-4 left-5 group-hover:scale-150">
             <span className=" text-white font-bold">{ productQuantity }</span>
          </div>
-         <img src="/images/cart.png" alt="cart" />
+         <ShoppingCartIcon fontSize='large' />
       </div>
    )
 }

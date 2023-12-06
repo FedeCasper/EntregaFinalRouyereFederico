@@ -24,11 +24,8 @@ const CartProvider = ( {children} ) => {
 
     // If the product is not in the cart
     } else {
-      setProducts(
-        [ ...products, { ...product, quantity, }, ]
-      );
+      setProducts( [ ...products, { ...product, quantity, }, ] );
     }
-
   };
 
   const removeItem = ( id ) => {
@@ -37,15 +34,21 @@ const CartProvider = ( {children} ) => {
 
   const clear = () => {
     setProducts( [] )
+    sessionStorage?.clear()
   }
 
   const isInCart = ( id ) => {
     return products.some( product => product.id === id )
   }
 
+  useEffect(() => {
+    sessionStorage.setItem('products', JSON.stringify(products));
+  }, [products]);
+
   useEffect( () => {
+    const productsSessionStorage = JSON.parse( sessionStorage.getItem( 'products' ) )
     setProductQuantity( 
-      products.reduce( ( acc, product ) => acc + product.quantity, 0 ) 
+      productsSessionStorage?.reduce( ( acc, product ) => acc + product.quantity, 0 ) 
       )
   }, [ products ] )
 

@@ -1,9 +1,9 @@
 import Item from '../Item/Item.jsx'
-import { useContext, useEffect, useState } from "react" 
+import { useEffect, useState } from "react" 
 import PulseLoader from "react-spinners/PulseLoader";
 import { Link, useParams } from 'react-router-dom';
-import db from '../../firebaseConfig/firebaseConfig.js';
-import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../firebaseConfig/firebaseConfig.js'
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
 
 
 const ItemList = () => {
@@ -60,8 +60,6 @@ const ItemList = () => {
    }, []);
 
    useEffect( () => {
-      console.log(categoryParam);
-      console.log(productsList);
          const filteredProducts = productsList.filter( product => product.category === categoryParam )
          filteredProducts.length ? setFilteredList( filteredProducts ) : setFilteredList(productsList)
    }, [categoryParam, productsList])
@@ -71,19 +69,19 @@ const ItemList = () => {
       { loader ? 
          <PulseLoader color="gray" /> :
          filteredList && filteredList.map( ({id, title, description, price, image, category, stock}) => 
-         <Link 
-            key={id} 
-            to={`/item/${id}`}
-            >
-            <Item 
-               title={title} 
-               description={description}
-               price={price} 
-               image={image} 
-               category={category}
-               stock={stock}
-            /> 
-         </Link>
+            <Link 
+               to={`/item/${id}`}
+               key={id}
+               >
+               <Item 
+                  title={title} 
+                  description={description}
+                  price={price} 
+                  image={image} 
+                  category={category}
+                  stock={stock}
+               /> 
+            </Link>
          ) 
       }
    </section>

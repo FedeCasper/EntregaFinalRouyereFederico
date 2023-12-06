@@ -5,7 +5,7 @@ import ItemCount from "../../components/ItemCount/ItemCount.jsx";
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import SyncLoader from "react-spinners/SyncLoader";
 import { getDoc, doc } from "firebase/firestore";
-import db from "../../firebaseConfig/firebaseConfig.js";
+import { db } from "../../firebaseConfig/firebaseConfig.js";
 import { useNavigate } from "react-router-dom";
 
 const ItemDetailContainer = () => {
@@ -46,7 +46,8 @@ const ItemDetailContainer = () => {
    }, []);
 
    return (
-      <section className={ `flex flex-col justify-center items-center gap-3 grow ${ colorTheme.theme === 'bg-slate-100' ? 'bg-slate-100' : 'bg-slate-700'}` }>
+      <section className={ `flex flex-col justify-center items-center gap-3 grow ${ colorTheme.theme === 'bg-slate-100' ? 'bg-slate-100' : 'bg-slate-700' }` }>
+         <h2 className={` w-ful text-2xl font-sansSerif text-center ${ colorTheme.theme === 'bg-slate-100' ?  'text-gray-600 my-3' : ' text-slate-100 my-3' } `}>Product Details</h2>
          {
             !product.title ? 
                <SyncLoader color="#30E0A1" /> :

@@ -9,7 +9,7 @@ const ItemListContainer = ( { greeting } ) => {
 
    return (
       <section className={ `flex flex-col gap-3 grow p-8 ${ colorTheme.theme === 'bg-slate-100' ? 'bg-slate-100' : 'bg-slate-700'}` } >
-         <h2 className=" w-ful text-2xl font-sansSerif text-center text-gray-600 my-2"> {greeting} </h2>
+         <h2 className={` w-ful text-2xl font-sansSerif text-center my-2 ${ colorTheme.theme === 'bg-slate-100' ?  'text-gray-600 my-3' : ' text-slate-100 my-3' } `}> {greeting} </h2>
          <ItemList />
       </section>
    )

@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
-import Item from '../Item/Item';
+import Item from '../Item/Item.jsx';
 import { collection, addDoc, getFirestore, doc, updateDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { ThemeContext } from "../../context/ThemeContext.jsx";
 import { OrderContext } from '../../context/OrderContext'
+import { AuthContext } from '../../context/AuthContext';
 
 const Cart = () => {
 
@@ -16,8 +17,7 @@ const Cart = () => {
    const [ total, setTotal ] = useState(0);
    const colorTheme = useContext(ThemeContext)
    const { orderId, setOrderId } = useContext( OrderContext );
-
-   console.log(orderId);
+   const { authUser } = useContext( AuthContext );
 
    const handleInput = (e) => {
       setFormValue({ ...formValue, [e.target.name]: e.target.value });
@@ -36,25 +36,32 @@ const Cart = () => {
 
    const createOrder = (e) => {
       e.preventDefault();
-      const querySnapshot = collection(db, 'orders');
-      const newOrder = {
-         buyer: formValue,
-         items: products.map(product => ({ id: product.id, title: product.title, price: product.price, quantity: product.quantity })),
-         date: new Date(),
-         total: total,
-         state: 'generated'
+      const noStock = products.some( product => ( product.stock < product.quantity ) );
+      console.log(noStock);
+      if ( !noStock ) {
+         const querySnapshot = collection(db, 'orders');
+         const newOrder = {
+            buyer: formValue,
+            items: products.map(product => ({ id: product.id, title: product.title, price: product.price, quantity: product.quantity })),
+            date: new Date(),
+            total: total,
+            state: 'generated'
+         }
+         addDoc(querySnapshot, newOrder)
+            .then( res => {
+               console.log('Order created', res.id);
+               updateProductStock();
+               setOrderId(res.id);
+               setTimeout(() => {
+                  clear();
+                  navigate('/checkout');
+               }, 1000);
+            })
+            .catch(error => console.log(error));
+      } else {
+         console.log("There's not enough stock");
+         alert('Something went wrong');
       }
-      addDoc(querySnapshot, newOrder)
-         .then( res => {
-            console.log('Order created', res.id);
-            updateProductStock();
-            setOrderId(res.id);
-            setTimeout(() => {
-               clear();
-               navigate('/checkout');
-            }, 1000);
-         })
-         .catch(error => console.log(error));
    }
 
    const updateProductStock = ( product ) => {
@@ -81,6 +88,7 @@ const Cart = () => {
                <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
                   <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">Confirm order</h4>
                   <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">Enter your details to complete the process.</p>
+                  <p className='text-white italic bg-[#FF7799] rounded-md p-2 mt-4 text-center'> You're about to make a purchase as ❕<br></br> { authUser ? authUser.email : 'anonymous user' }</p>
 
                   {/* Form starts ---------------------------- */}
                   <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
@@ -168,7 +176,7 @@ const Cart = () => {
                      </div>
 
                      <button
-                        className="mt-6 block w-full select-none rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="mt-6 block w-full select-none rounded-lg bg-[#FF7799] py-3 px-6 text-center align-middle font-sans text-xs font-bold text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="submit"
                         data-ripple-light="true"
                         onClick={createOrder}
@@ -185,7 +193,7 @@ const Cart = () => {
 
             <section className='flex flex-col justify-start grow flex-wrap'>
                <button onClick={clear} className="self-center mb-2 w-full transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-md hover:bg-lime-300">Remove all products</button>
-               <div className="text-2xl font-sansSerif italic text-center text-gray-600 mb-3 bg-slate-200"> Total: ${total?.toFixed(2)} </div>
+               <div className="text-2xl font-sansSerif italic text-center text-gray-600 mb-3 bg-slate-200"> Total: ${total?.toLocaleString() } </div>
                {products.length ?
                   <section className='flex content-start gap-4 h-2/3 flex-wrap'>
                      {

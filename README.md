@@ -28,13 +28,22 @@ This project is a straightforward CRUD (Create, Read, Update, Delete) applicatio
 
 ### Usage
 
-The application features a main page showcasing all available products. The navigation bar includes a section allowing users to filter products based on categories. Clicking on a product card navigates to a detailed view, providing comprehensive information about the product. Additionally, users can add the product to their shopping cart.
+You can log in as a trial user with the following credentials:
+- User email:
+   ```bash
+   user@mail.com
+- User password:
+   ```bash
+   123456
+Or you can create a new user from the Register form.
+
+Once you're inside the site the application features a main page showcasing all available products. The navigation bar includes a section allowing users to filter products based on categories. Clicking on a product card navigates to a detailed view, providing comprehensive information about the product. Additionally, users can add the product to their shopping cart.
 
 ### Database
 
 This project uses Firestore ( Firebase ) as its database. Ensure you have an account on Firebase and follow these steps:
 
-1. To set up Firebase for your project, make sure to replace the placeholder values in the firebaseConfig object with your actual Firebase credentials. You can obtain these credentials from your Firebase project settings in the `Firebase Console`. Replace `firebasecongif` with your API key, authentication domain, project ID, storage bucket, messaging sender ID, and app ID to ensure a secure and functional connection to Firebase services. 
+- To set up Firebase for your project, make sure to replace the placeholder values in the `firebaseConfig` object with your actual Firebase credentials. You can obtain these credentials from your Firebase project settings in the `Firebase Console`.  
    ```bash
    const firebaseConfig = {
    apiKey: "YOUR_API_KEY",
@@ -49,6 +58,11 @@ This project uses Firestore ( Firebase ) as its database. Ensure you have an acc
 
 The project utilizes a few additional dependencies beyond the specified requirements for the assignment, including Material Icons, Tailwind CSS, and React Spinners. 
 
-- [Material Icons](https://mui.com/): Material Icons enhance the visual elements. 
-- [React Spinners](https://tailwindcss.com/): Tailwind CSS provides a utility-first styling approach for efficient and responsive design. 
-- [React Spinners](https://www.npmjs.com/package/react-spinners): React Spinners offer customizable loading spinners for a better user experience. 
+- [Material Icons](https://mui.com/) : Material Icons enhance the visual elements. 
+- [React Spinners](https://tailwindcss.com/) : Tailwind CSS provides a utility-first styling approach for efficient and responsive design. 
+- [React Spinners](https://www.npmjs.com/package/react-spinners) : React Spinners offer customizable loading spinners for a better user experience. 
+- [Reactfire](https://www.npmjs.com/package/reactfire) : Reactfire implemented for security in client authentication.
+
+### Known Issues
+
+- Reactfire is not compatible with firebase version 10.7.0 you'll need version 9.0.0
