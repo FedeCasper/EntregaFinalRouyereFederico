@@ -12,18 +12,17 @@ const WishList = () => {
       setWishList( JSON.parse(sessionStorage.getItem("wishList")) || [])
    }
    
-   console.log(wishList);
-
    useEffect(() => {
       getWishList()
       setLoader(false)
    }, [])
 
+
    return (
       <section className=" flex flex-col justify-center flex-wrap gap-2">
       { loader ? 
          <PulseLoader color="gray" /> :
-         wishList && wishList.map( ({id, title, description, price, image, category, stock}) => 
+         wishList && wishList.map( ({id, title}) => 
          <Link 
             key={id} 
             to={`/item/${id}`}

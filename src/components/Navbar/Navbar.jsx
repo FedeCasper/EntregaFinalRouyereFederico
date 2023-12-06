@@ -7,7 +7,8 @@ import { db } from '../../firebaseConfig/firebaseConfig.js'
 import { collection, getDocs } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import { getAuth, signOut } from 'firebase/auth';
-import ViewListIcon from '@mui/icons-material/ViewList';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Navbar = () => {
 
@@ -91,7 +92,10 @@ const Navbar = () => {
 
       <section className="flex items-center">
         <img src="/images/store.png" alt="cart icon" />
-        <Link to={"/home"} className="flex justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#30E0A1] rounded p-2 drop-shadow-sm hover:bg-[#ff7799] ms-3 font-sansSerif">Home</Link>
+        <Link 
+          to={"/home"} 
+          className="flex justify-center items-center h-10 w-24 bg-[#30E0A1] rounded ms-3 p-2 drop-shadow-sm font-sansSerif
+          transition-all duration-300 ease-in-out hover:bg-[#ff7799] hover:scale-105">Home</Link>
       </section>
 
       <section className=' flex justify-center items-center gap-3 font-sansSerif w-1/3'>
@@ -108,12 +112,19 @@ const Navbar = () => {
       <section className="flex items-center gap-4">
         <ToogleThemeWidget themeChange={handleToogle} />
         <Link to={"/wishList"}>
-          <ViewListIcon fontSize='large' titleAccess="Wish List" className="hover:text-[#FF7799] hover:scale-95"/>
+          <FormatListBulletedIcon 
+          fontSize='large' 
+          titleAccess="Wish List" 
+          className="hover:text-[#FF7799] hover:scale-110 cursor-pointer "/>
         </Link>
         <Link to={"/cart"} className="flex items-center">
           <CartWidget />
         </Link>
-        <button className="flex self-center justify-center items-center h-10 w-24 transition-all ease-in-out bg-[#ff7799] rounded p-2 drop-shadow-sm duration-300 hover:scale-95 hover:bg-[#30E0A1] ms-3 font-sansSerif" onClick={handleLogout}>Logout</button>
+        <LogoutIcon 
+          onClick={ handleLogout }
+          fontSize='large' 
+          titleAccess="Logout" 
+          className="hover:text-[#FF7799] hover:scale-110 cursor-pointer "/>
       </section>
       
     </nav>

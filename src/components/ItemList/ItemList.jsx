@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import PulseLoader from "react-spinners/PulseLoader";
 import { Link, useParams } from 'react-router-dom';
 import { db } from '../../firebaseConfig/firebaseConfig.js'
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 const ItemList = () => {
