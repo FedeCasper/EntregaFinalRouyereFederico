@@ -26,7 +26,6 @@ This project is a straightforward CRUD (Create, Read, Update, Delete) applicatio
    ```bash
    npm start
 
-
 ### Usage
 
 You can log in as a trial user with the following credentials:
