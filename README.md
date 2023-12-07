@@ -19,12 +19,13 @@ This project is a straightforward CRUD (Create, Read, Update, Delete) applicatio
 2. Navigate to the project directory: 
    ```bash
    cd EntregaFinalRouyereFederico
-3. Run the app: 
-   ```bash
-   npm start
-4. Install dependencies: 
+3. Install dependencies:   
    ```bash
    npm install
+4. Run the app: 
+   ```bash
+   npm start
+
 
 ### Usage
 
