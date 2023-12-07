@@ -5,10 +5,6 @@ const ItemDetail = ( { productSelected, children } ) => {
 
   const { title, image, price, description } = productSelected
 
-  useEffect(() => {
-    console.log(title);
-  }, [productSelected]);
-
   return (
     <>
       <div className='relative flex justify-between gap-4 w-10/12 lg:w-3/6 bg-[#E5E5E5] p-3 shadow-md'>

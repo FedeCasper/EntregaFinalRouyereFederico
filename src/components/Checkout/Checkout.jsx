@@ -8,7 +8,7 @@ const Checkout = () => {
 
   const colorTheme = useContext(ThemeContext)
   const { theme, setTheme } = useContext(ThemeContext);
-  const { orderId, setOrderId, order, setOrder } = useContext(OrderContext);
+  const { orderId, order, setOrder } = useContext(OrderContext);
   const [orderList, setOrderList ] = useState([]);
 
   const getOrderById = (id) => {

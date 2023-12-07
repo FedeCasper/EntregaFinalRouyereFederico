@@ -59,7 +59,6 @@ const Navbar = () => {
   }
 
   const handleSelectChange = (event) => {
-    console.log(event.target.value);
     const category = event.target.value;
     if (category) {
       navigate(`/category/${category}`);

@@ -37,7 +37,6 @@ const Cart = () => {
    const createOrder = (e) => {
       e.preventDefault();
       const noStock = products.some( product => ( product.stock < product.quantity ) );
-      console.log(noStock);
       if ( !noStock ) {
          const querySnapshot = collection(db, 'orders');
          const newOrder = {
@@ -49,7 +48,6 @@ const Cart = () => {
          }
          addDoc(querySnapshot, newOrder)
             .then( res => {
-               console.log('Order created', res.id);
                updateProductStock();
                setOrderId(res.id);
                setTimeout(() => {

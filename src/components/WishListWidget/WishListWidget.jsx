@@ -9,7 +9,6 @@ const WishListWidget = ( {productSelected} ) => {
    const { addToWishList, wishList, getWishList } = useContext( WishListContext );
 
    const checkIsInWishList =  () => {
-      console.log("dentro checkIsInWishList");
       let boolean = wishList.some( product => product.id === productSelected.id )
       setIsInWishList(boolean);
    }
